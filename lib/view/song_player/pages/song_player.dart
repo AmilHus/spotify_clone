@@ -6,9 +6,28 @@ import 'package:spotify_clone/domain/entities/songs/song_entity.dart';
 import 'package:spotify_clone/view/song_player/bloc/song_player_cubit.dart';
 import 'package:spotify_clone/view/song_player/bloc/song_player_state.dart';
 
-class SongPlayerPage extends StatelessWidget {
+class SongPlayerPage extends StatefulWidget {
   final SongEntity songEntity;
   const SongPlayerPage({required this.songEntity, super.key});
+
+  @override
+  State<SongPlayerPage> createState() => _SongPlayerPageState();
+}
+
+class _SongPlayerPageState extends State<SongPlayerPage> {
+  late SongPlayerCubit songsPlayerCubit;
+
+  @override
+  void initState() {
+    songsPlayerCubit = SongPlayerCubit();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    songsPlayerCubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +41,7 @@ class SongPlayerPage extends StatelessWidget {
             onPressed: () {}, icon: const Icon(Icons.more_vert_rounded)),
       ),
       body: BlocProvider(
-        create: (_) => SongPlayerCubit()..loadSong(songEntity.songUrl),
+        create: (_) => songsPlayerCubit..loadSong(widget.songEntity.songUrl),
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: Builder(builder: (context) {
@@ -51,7 +70,7 @@ class SongPlayerPage extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           image: DecorationImage(
-              fit: BoxFit.cover, image: NetworkImage(songEntity.coverUrl))),
+              fit: BoxFit.cover, image: NetworkImage(widget.songEntity.coverUrl))),
     );
   }
 
@@ -63,14 +82,14 @@ class SongPlayerPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              songEntity.title,
+              widget.songEntity.title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              songEntity.artist,
+              widget.songEntity.artist,
               style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
             ),
           ],

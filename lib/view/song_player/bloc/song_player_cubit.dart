@@ -7,6 +7,7 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
   Duration songDuration = Duration.zero;
   Duration songPosition = Duration.zero;
   bool isUserDragging = false;
+
   SongPlayerCubit() : super(SongPlayerisLoading()) {
     audioPlayer.positionStream.listen((position) {
       if (!isUserDragging) {
@@ -22,15 +23,21 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
   }
 
   void updateSongPlayer() {
-    emit(SongPlayerisLoaded());
+    if (!isClosed) {
+      emit(SongPlayerisLoaded());
+    }
   }
 
   Future<void> loadSong(String songUrl) async {
     try {
       await audioPlayer.setUrl(songUrl);
-      emit(SongPlayerisLoaded());
+      if (!isClosed) {
+        emit(SongPlayerisLoaded());
+      }
     } catch (e) {
-      emit(SongPlayerisLoadFailure());
+      if (!isClosed) {
+        emit(SongPlayerisLoadFailure());
+      }
     }
   }
 
@@ -42,9 +49,13 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
         audioPlayer.play();
       }
 
-      emit(SongPlayerisLoaded());
+      if (!isClosed) {
+        emit(SongPlayerisLoaded());
+      }
     } catch (e) {
-      emit(SongPlayerisLoadFailure());
+      if (!isClosed) {
+        emit(SongPlayerisLoadFailure());
+      }
     }
   }
 
@@ -52,7 +63,9 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
     final newPosition = Duration(seconds: value.toInt());
     audioPlayer.seek(newPosition);
     songPosition = newPosition;
-    emit(SongPlayerisLoaded());
+    if (!isClosed) {
+      emit(SongPlayerisLoaded());
+    }
   }
 
   void setUserDragging(bool dragging) {
@@ -62,6 +75,6 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
   @override
   Future<void> close() async {
     audioPlayer.dispose();
-    return super.close();
+    super.close();
   }
 }

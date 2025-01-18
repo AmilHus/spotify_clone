@@ -87,7 +87,7 @@ class ChooseModePage extends StatelessWidget {
                   width: 73,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.grey.withOpacity(0.2),
+                    color: AppColors.grey.withValues(alpha: 0.2),
                   ),
                   child: SvgPicture.asset(modeIcon, fit: BoxFit.none),
                 )),

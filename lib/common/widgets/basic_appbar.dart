@@ -25,7 +25,7 @@ class BasicAppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                   height: 50,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.darkGrey.withOpacity(0.13)),
+                      color: AppColors.darkGrey.withValues(alpha: 0.13)),
                   child: Icon(Icons.arrow_back_ios_new,
                       size: 15,
                       color: context.isDarkMode

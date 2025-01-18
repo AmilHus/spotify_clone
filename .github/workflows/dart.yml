@@ -31,6 +31,9 @@ jobs:
       - name: Analyze project source
         run: flutter analyze
 
+      - name: Restore .env file
+        run: echo "${{ secrets.ENV_FILE }}" > .env
+
       # Run tests for the Flutter project
       - name: Run tests
         run: flutter test

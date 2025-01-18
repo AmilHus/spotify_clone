@@ -26,14 +26,14 @@ jobs:
       # Check formatting (uncomment if needed)
       # - name: Verify formatting
       #   run: flutter format --set-exit-if-changed .
+      
+      - name: Restore .env file
+        run: echo "${{ secrets.ENV_FILE }}" > .env
 
       # Analyze project source with Flutter
       - name: Analyze project source
         run: flutter analyze
-
-      - name: Restore .env file
-        run: echo "${{ secrets.ENV_FILE }}" > .env
-
+      
       # Run tests for the Flutter project
       - name: Run tests
         run: flutter test

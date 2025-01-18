@@ -8,12 +8,15 @@ import 'package:spotify_clone/firebase_options.dart';
 import 'package:spotify_clone/service_locator.dart';
 import 'package:spotify_clone/view/choose_mode/bloc/choose_theme_mode_cubit.dart';
 import 'package:spotify_clone/view/splash/pages/splash.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
+
+  await dotenv.load(fileName: ".env"); // Add this line
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

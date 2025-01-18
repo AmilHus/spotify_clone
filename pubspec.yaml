@@ -46,6 +46,7 @@ dependencies:
   cloud_firestore:
   just_audio: ^0.9.40
   flutterfire_cli: ^1.0.0
+  flutter_dotenv: ^5.2.0
   mocktail: ^1.0.4
   
 dev_dependencies:

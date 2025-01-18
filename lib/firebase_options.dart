@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -40,8 +41,8 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDVe_1qZ3_T5kVWb7K2kOi9WzYiZ_j6M2A',
+  static final FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.env['WEB_API_KEY']!,
     appId: '1:664311732203:web:e02f5828a93ac2c5f1abae',
     messagingSenderId: '664311732203',
     projectId: 'spotifyclone3021',
@@ -49,16 +50,16 @@ class DefaultFirebaseOptions {
     storageBucket: 'spotifyclone3021.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA7FlsB3inZECGUsmAXym7acRzVPODCrhQ',
+  static final FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['ANDROID_API_KEY']!,
     appId: '1:664311732203:android:c1f949ae64dcf8f9f1abae',
     messagingSenderId: '664311732203',
     projectId: 'spotifyclone3021',
     storageBucket: 'spotifyclone3021.appspot.com',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA8OK-zTpUDOVUFztID9Ka0svi5rbQYEJI',
+  static final FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env['IOS_API_KEY']!,
     appId: '1:664311732203:ios:f569835d2ba1be79f1abae',
     messagingSenderId: '664311732203',
     projectId: 'spotifyclone3021',
@@ -66,8 +67,8 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.example.spotifyClone',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA8OK-zTpUDOVUFztID9Ka0svi5rbQYEJI',
+  static final FirebaseOptions macos = FirebaseOptions(
+    apiKey: dotenv.env['MACOS_API_KEY']!,
     appId: '1:664311732203:ios:f569835d2ba1be79f1abae',
     messagingSenderId: '664311732203',
     projectId: 'spotifyclone3021',
@@ -75,8 +76,8 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.example.spotifyClone',
   );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDVe_1qZ3_T5kVWb7K2kOi9WzYiZ_j6M2A',
+  static final FirebaseOptions windows = FirebaseOptions(
+    apiKey: dotenv.env['WINDOWS_API_KEY']!,
     appId: '1:664311732203:web:afdeafe3fcc5bfc2f1abae',
     messagingSenderId: '664311732203',
     projectId: 'spotifyclone3021',

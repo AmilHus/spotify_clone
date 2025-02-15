@@ -43,6 +43,9 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
 
   void playAndPauseSong() {
     try {
+      if (audioPlayer.duration == null || songDuration == Duration.zero) {
+        return; 
+      }
       if (audioPlayer.playing) {
         audioPlayer.stop();
       } else {
